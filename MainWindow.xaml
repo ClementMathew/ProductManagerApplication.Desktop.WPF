@@ -1,0 +1,96 @@
+﻿<Window x:Class="Product_Manager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Product_Manager"
+        xmlns:vm="clr-namespace:Product_Manager.ViewModels"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="Product Manager" Height="900" Width="1600" Icon="Assets (Solution)\ICO Type\logo.ico">
+
+    <Window.Resources>
+        <!--Seperator Style-->
+        <Style x:Key="CustomSeperator" TargetType="Separator">
+            <Style.Setters>
+                <Setter Property="Margin" Value="0"/>
+            </Style.Setters>
+        </Style>
+    </Window.Resources>
+
+    <!--Outer Grid-->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
+
+        <!--Top Section-->
+        <Grid Grid.Row="0" 
+              Background="{StaticResource PrimaryColorBrush}" 
+              VerticalAlignment="Stretch">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="9*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <!--Logo Section-->
+            <Border Background="{StaticResource SecondaryColorBrush}" 
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Stretch"
+                    Width="180" 
+                    Grid.Column="0"
+                    CornerRadius="50" 
+                    Margin="-50,35,0,35">
+                <Image Source="Assets (Solution)\PNG Type\logo.png" Height="80" HorizontalAlignment="Right" Margin="15,0"/>
+            </Border>
+
+            <!--Header Title Section-->
+            <Grid Grid.Column="1" Margin="10,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="7*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="1">
+                    <TextBlock Text="Product Manager" 
+                           FontWeight="Bold"
+                           FontSize="{StaticResource Font2XL}" 
+                           Foreground="{StaticResource SecondaryColorBrush}"/>
+                    <TextBlock Text="You give us the products... we will manage the rest of it...!"  
+                           Foreground="{StaticResource SecondaryColorBrush}"
+                           FontSize="{StaticResource FontMedium}"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+
+        <!--Bottom Section-->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="4*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <!--Left Side Buttons-->
+            <StackPanel Grid.Column="0" Background="{StaticResource AccentColorBrush}">
+                <Button Content="Home" Click="Button_Click" x:Name="HomeButton" Style="{StaticResource LeftTabButton}"/>
+                <Separator Style="{StaticResource CustomSeperator}"></Separator>
+
+                <Button Content="Products Management" x:Name="ProductsButton" Click="Button_Click" Style="{StaticResource LeftTabButton}"/>
+                <Separator Style="{StaticResource CustomSeperator}"></Separator>
+
+                <Button Content="Categories Management" x:Name="CategoriesButton" Click="Button_Click" Style="{StaticResource LeftTabButton}"/>
+                <Separator Style="{StaticResource CustomSeperator}"></Separator>
+
+                <Button Content="Tags Management" x:Name="TagButton" Click="Button_Click" Style="{StaticResource LeftTabButton}"/>
+            </StackPanel>
+
+            <!--Right Side Frames-->
+            <StackPanel Grid.Column="1">
+                <Frame Name="MainWindowFrame" NavigationUIVisibility="Hidden"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+
+</Window>

@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--Resources-->
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="../Templates/ListViewTemplate.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    
+    <!--Products List View-->
+    <Style x:Key="ProductListView" TargetType="ListView">
+        <Setter Property="ItemTemplate" Value="{StaticResource CustomProductListView}"/>
+    </Style>
+</ResourceDictionary>

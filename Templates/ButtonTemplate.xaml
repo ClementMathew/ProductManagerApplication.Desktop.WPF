@@ -1,0 +1,56 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <!--Resources-->
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="../Resources/Sizes.xaml"/>
+        <ResourceDictionary Source="../Resources/Colors.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <!--Custom Button Template-->
+    <Style x:Key="CustomButton" TargetType="Button">
+        <Style.Setters>
+            <Setter Property="Foreground" Value="{StaticResource SecondaryColorBrush}"/>
+            <Setter Property="FontSize" Value="{StaticResource FontSmall}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Padding="{TemplateBinding Padding}"
+                                Margin="{TemplateBinding Margin}"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="2">
+                            <ContentPresenter VerticalAlignment="Center" 
+                                              HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+    
+    <!--Custom Left Tab Buttons Template-->
+    <Style x:Key="CustomLeftTabButton" TargetType="Button">
+        <Style.Setters>
+            <Setter Property="Foreground" Value="{StaticResource TextColorBrush}"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="{StaticResource FontNormal}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"></ContentPresenter>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True" >
+                                <Setter Property="Background" Value="{StaticResource SecondaryColorBrush}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+</ResourceDictionary>

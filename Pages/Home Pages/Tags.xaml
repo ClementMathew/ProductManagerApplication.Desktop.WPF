@@ -1,0 +1,28 @@
+﻿<Page x:Class="Product_Manager.Pages.Home_Pages.Tags"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Product_Manager.Pages.Home_Pages"
+      xmlns:vm="clr-namespace:Product_Manager.ViewModels"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Tags">
+
+    <Page.DataContext>
+        <vm:TagViewModel/>
+    </Page.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <ListView Grid.Row="0" ItemsSource="{Binding TagsToList}" Style="{StaticResource ProductListView}"/>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Style="{StaticResource PrimaryButton}" Content="New"></Button>
+            <Button Style="{StaticResource DeleteButton}" Content="Delete"></Button>
+        </StackPanel>
+    </Grid>
+</Page>
