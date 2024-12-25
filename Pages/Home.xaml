@@ -10,21 +10,27 @@
 
     <StackPanel Margin="30">
         <!--Home Header-->
-        <TextBlock Text="Dashboard" Style="{StaticResource MainHeading}"/>
-        
+        <DockPanel >
+            <TextBlock DockPanel.Dock="Left" Text="Dashboard" Style="{StaticResource MainHeading}"/>
+
+            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Style="{StaticResource DeleteButton}" Content="Delete"></Button>
+            </StackPanel>
+        </DockPanel>
+
         <!--Home Tab Control-->
         <TabControl Margin="20,0,0,0" Height="550">
-            
+
             <!--Products Tab-->
             <TabItem Header="Products">
                 <Frame Source="Home Pages/Products.xaml"/>
             </TabItem>
-            
+
             <!--Categories Tab-->
             <TabItem Header="Categories">
                 <Frame Source="Home Pages/Categories.xaml"/>
             </TabItem>
-            
+
             <!--Tags Tab-->
             <TabItem Header="Tags">
                 <Frame Source="Home Pages/Tags.xaml"/>

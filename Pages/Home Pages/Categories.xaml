@@ -14,32 +14,16 @@
         <vm:CategoryViewModel/>
     </Page.DataContext>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="5*"></RowDefinition>
-            <RowDefinition Height="1*"></RowDefinition>
-        </Grid.RowDefinitions>
-
-        <!--Categories List View-->
-        <ListView Grid.Row="0" ItemsSource="{Binding CategoriesToList}" 
-                  BorderBrush="Transparent"
-                  BorderThickness="0"
-                  ItemContainerStyle="{StaticResource MainListViewItemTemplate_Categories}">
-            
-        </ListView>
+    <!--Categories List View-->
+    <ListView Grid.Row="0" ItemsSource="{Binding CategoriesToList}" 
+              BorderBrush="Transparent"
+              BorderThickness="0"
+              ItemContainerStyle="{StaticResource MainListViewItemTemplate_Categories_Tags}">
         
-        <!--New and Delete Buttons-->
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
-            
-            <!--New Category Button-->
-            <Button Style="{StaticResource PrimaryButton}" 
-                    Content="New"
-                    Command="{Binding NewCategoryCommand}"></Button>
-            
-            <!--Delete Category Button-->
-            <Button Style="{StaticResource DeleteButton}" 
-                    Content="Delete"
-                    Command="{Binding DeleteCategoryButton}"></Button>
-        </StackPanel>
-    </Grid>
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <TextBlock Text="{Binding Name}"/>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 </Page>

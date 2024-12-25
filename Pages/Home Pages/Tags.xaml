@@ -13,16 +13,15 @@
         <vm:TagViewModel/>
     </Page.DataContext>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="5*"></RowDefinition>
-            <RowDefinition Height="1*"></RowDefinition>
-        </Grid.RowDefinitions>
-
-        <ListView Grid.Row="0" ItemsSource="{Binding TagsToList}" />
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Style="{StaticResource PrimaryButton}" Content="New"></Button>
-            <Button Style="{StaticResource DeleteButton}" Content="Delete"></Button>
-        </StackPanel>
-    </Grid>
+    <ListView Grid.Row="0" ItemsSource="{Binding TagsToList}"
+              BorderBrush="Transparent"
+              BorderThickness="0"
+              ItemContainerStyle="{StaticResource MainListViewItemTemplate_Categories_Tags}">
+        
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <TextBlock Text="{Binding Name}"/>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 </Page>

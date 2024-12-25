@@ -30,7 +30,7 @@
     <Style TargetType="TextBlock" x:Key="ProductListPrice">
         <Style.Setters>
             <Setter Property="Foreground" Value="Green"/>
-            <Setter Property="FontSize" Value="{StaticResource FontLarge}"/>
+            <Setter Property="FontSize" Value="{StaticResource FontMedium}"/>
             <Setter Property="FontWeight" Value="Bold"/>
         </Style.Setters>
     </Style>

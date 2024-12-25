@@ -8,7 +8,6 @@ using System.Windows;
 using Product_Manager.Commands;
 using Product_Manager.Models;
 using Product_Manager.Repositories;
-using Product_Manager.Windows;
 
 namespace Product_Manager.ViewModels
 {
@@ -67,8 +66,7 @@ namespace Product_Manager.ViewModels
 
         private void HandleNewCategoryCommand(object obj)
         {
-            var categoryWindow = new NewCategoryWindow();
-            categoryWindow.ShowDialog();
+           
         }
     }
 }

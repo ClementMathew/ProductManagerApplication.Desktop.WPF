@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,16 +14,16 @@ namespace Product_Manager.Models
         public int Price { get; set; }
         public string Description { get; set; }
         public string ImageUrl { get; set; }
-        public List<Categories> CategoryList { get; set; }
-        public List<Tags> TagsList { get; set; }
+        public ObservableCollection<Categories> CategoryList { get; set; }
+        public ObservableCollection<Tags> TagsList { get; set; }
 
         public Products(int productId,
             string name,
             int price,
             string description,
             string imageUrl,
-            List<Categories> categories,
-            List<Tags> tags)
+            ObservableCollection<Categories> categories,
+            ObservableCollection<Tags> tags)
         {
             ProductID = productId;
             Name = name;

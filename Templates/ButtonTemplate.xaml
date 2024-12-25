@@ -35,7 +35,7 @@
         <Style.Setters>
             <Setter Property="Foreground" Value="{StaticResource TextColorBrush}"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="FontSize" Value="{StaticResource FontNormal}"/>
+            <Setter Property="FontSize" Value="{StaticResource FontMedium}"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">

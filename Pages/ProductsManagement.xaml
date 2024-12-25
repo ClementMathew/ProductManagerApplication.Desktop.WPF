@@ -5,10 +5,53 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Product_Manager.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="700" d:DesignWidth="1400"
       Title="Products"  d:Background="White">
 
     <StackPanel Margin="30">
         <TextBlock Text="Products Management" Style="{StaticResource MainHeading}"/>
+
+        <Separator Width="1400"/>
+        
+        <Grid Margin="0,0,0,40">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="400"/>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="400"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Margin="20">
+                <Label Content="Name" Style="{StaticResource MainInputLabel}"/>
+                <TextBox Style="{StaticResource MainInputTextBox}"/>
+
+                <Label Content="Description" Margin="0,35,0,0" Style="{StaticResource MainInputLabel}"/>
+                <TextBox Style="{StaticResource MainInputTextBox}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2" Margin="20">
+                <Label Content="Price" Style="{StaticResource MainInputLabel}"/>
+                <TextBox Style="{StaticResource MainInputTextBox}"/>
+
+                <Label Content="Choose Image" Margin="0,35,0,0" Style="{StaticResource MainInputLabel}"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBox Grid.Column="0" Style="{StaticResource MainInputTextBox}"/>
+                    <Button Grid.Column="1" 
+                            Content="Choose" 
+                            Margin="10,0,0,0"
+                            Style="{StaticResource SecondaryButton}"/>
+                </Grid>
+            </StackPanel>
+        </Grid>
+
+        <Button HorizontalAlignment="Left" 
+                Margin="10,0" 
+                Width="380" 
+                Content="Submit" 
+                Style="{StaticResource PrimaryButton}"/>
     </StackPanel>
 </Page>

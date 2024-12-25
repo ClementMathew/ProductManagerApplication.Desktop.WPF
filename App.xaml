@@ -13,6 +13,8 @@
                 <ResourceDictionary Source="Resources\Sizes.xaml"/>
                 <ResourceDictionary Source="Resources\Colors.xaml"/>
                 <ResourceDictionary Source="Resources\Buttons.xaml"/>
+                <ResourceDictionary Source="Resources\Labels.xaml"/>
+                <ResourceDictionary Source="Resources\TextBoxes.xaml"/>
                 <ResourceDictionary Source="Resources\Headings.xaml"/>
                 
                 <!--Templates-->

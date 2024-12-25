@@ -67,7 +67,7 @@
                     <!--Sub Header-->
                     <TextBlock Text="You give us the products... we will manage the rest of it...!"  
                            Foreground="{StaticResource SecondaryColorBrush}"
-                           FontSize="{StaticResource FontMedium}"/>
+                           FontSize="{StaticResource FontMediumNormal}"/>
                 </StackPanel>
             </Grid>
         </Grid>

@@ -6,8 +6,9 @@
     <sys:Double x:Key="Font2XL">47</sys:Double>
     <sys:Double x:Key="FontXL">35</sys:Double>
     <sys:Double x:Key="FontLarge">25</sys:Double>
-    <sys:Double x:Key="FontNormal">18</sys:Double>
-    <sys:Double x:Key="FontMedium">17</sys:Double>
+    <sys:Double x:Key="FontMedium">18</sys:Double>
+    <sys:Double x:Key="FontMediumNormal">17</sys:Double>
+    <sys:Double x:Key="FontNormal">15</sys:Double>
     <sys:Double x:Key="FontSmall">12</sys:Double>
     
 </ResourceDictionary>
