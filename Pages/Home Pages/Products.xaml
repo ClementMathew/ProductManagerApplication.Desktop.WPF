@@ -10,14 +10,17 @@
       d:DesignHeight="700" d:DesignWidth="1400"
       Title="Products" d:Background="White">
 
+    <!--Page Resources-->
     <Page.Resources>
         <pc:PriceConverter x:Key="PriceConverter"/>
     </Page.Resources>
 
+    <!--Page DataContext-->
     <Page.DataContext>
         <vm:ProductViewModel/>
     </Page.DataContext>
 
+    <!--Products Main ListView-->
     <ListView Height="500"
               BorderBrush="Transparent"
               BorderThickness="0"
@@ -33,16 +36,19 @@
                         <ColumnDefinition Width="1*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
 
+                    <!--Product Image Brush Resource-->
                     <Grid.Resources>
                         <ImageBrush x:Key="ProductImageBrush" ImageSource="{Binding ImageUrl}"/>
                     </Grid.Resources>
 
+                    <!--Product Image, Name and Description-->
                     <StackPanel Grid.Column="0" Orientation="Horizontal">
                         <Border Background="{StaticResource ProductImageBrush}" 
                                 CornerRadius="5" 
                                 Height="60" Width="60" 
                                 Margin="20,15"/>
 
+                        <!--Product Name and Description-->
                         <StackPanel VerticalAlignment="Center" Margin="10,0">
                             <TextBlock Text="{Binding Name}" 
                                        Margin="0,-5,0,3"
@@ -52,12 +58,16 @@
                         </StackPanel>
                     </StackPanel>
 
+                    <!--Products Sub ListView-->
                     <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                        
+                        <!--Products Sub ListView (Cateories)-->
                         <ListView ItemsSource="{Binding CategoryList}"
                                       Background="Transparent"
                                       BorderBrush="Transparent"
                                       BorderThickness="0"
                                       ItemContainerStyle="{StaticResource SubListViewItemTemplate_Categories}">
+                            
                             <ListView.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <WrapPanel Orientation="Horizontal"/>
@@ -71,11 +81,13 @@
                             </ListView.ItemTemplate>
                         </ListView>
 
+                        <!--Products Sub ListView (Tags)-->
                         <ListView ItemsSource="{Binding TagsList}"
                                       Background="Transparent"
                                       BorderBrush="Transparent"
                                       BorderThickness="0"
                                       ItemContainerStyle="{StaticResource SubListViewItemTemplate_Tags}">
+                            
                             <ListView.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <WrapPanel Orientation="Horizontal"/>
@@ -90,6 +102,7 @@
                         </ListView>
                     </StackPanel>
 
+                    <!--Products Price-->
                     <Border Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <TextBlock Text="{Binding Price,Converter={StaticResource PriceConverter}}"
                                    Style="{StaticResource ProductListPrice}"></TextBlock>

@@ -9,15 +9,18 @@
       d:DesignHeight="700" d:DesignWidth="1400" d:Background="White"
       Title="Categories">
 
+    <!--Page DataContext-->
     <Page.DataContext>
         <vm:CategoryViewModel/>
     </Page.DataContext>
 
     <StackPanel Margin="30">
+        
+        <!--Main Header-->
         <TextBlock Text="Categories Management" Style="{StaticResource MainHeading}"/>
-
         <Separator Width="1400"/>
 
+        <!--Data Input Column Grid-->
         <Grid Margin="0,0,0,40">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="400"/>
@@ -26,18 +29,21 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Column="0" Margin="20">
+                
+                <!--CategoryID Input-->
                 <Label Content="Category ID" Style="{StaticResource MainInputLabel}"/>
-
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="2*"></ColumnDefinition>
                         <ColumnDefinition Width="1*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
 
+                    <!--CategoryID Preview-->
                     <TextBox Grid.Column="0"
                              Text="{Binding CategoryId}"
                              Style="{StaticResource MainInputTextBox}"/>
 
+                    <!--CategoryID Generate Button-->
                     <Button Grid.Column="1" 
                             Content="Generate" 
                             Margin="10,0,0,0"
@@ -45,12 +51,14 @@
                 </Grid>
             </StackPanel>
 
+            <!--Category Name Input-->
             <StackPanel Grid.Column="2" Margin="20">
                 <Label Content="Category Name" Style="{StaticResource MainInputLabel}"/>
                 <TextBox Text="{Binding Name}" Style="{StaticResource MainInputTextBox}"/>
             </StackPanel>
         </Grid>
 
+        <!--Submit Button-->
         <Button HorizontalAlignment="Left" 
                 Margin="10,0" 
                 Width="380" 

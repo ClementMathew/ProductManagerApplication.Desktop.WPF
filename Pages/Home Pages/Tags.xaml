@@ -9,10 +9,12 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Tags">
 
+    <!--Page DataContext-->
     <Page.DataContext>
         <vm:TagViewModel/>
     </Page.DataContext>
 
+    <!--Tags ListView-->
     <ListView Grid.Row="0" ItemsSource="{Binding TagsToList}"
               BorderBrush="Transparent"
               BorderThickness="0"

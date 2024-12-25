@@ -13,6 +13,7 @@
         <DockPanel >
             <TextBlock DockPanel.Dock="Left" Text="Dashboard" Style="{StaticResource MainHeading}"/>
 
+            <!--Header Delete Button-->
             <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Style="{StaticResource DeleteButton}" Content="Delete"></Button>
             </StackPanel>

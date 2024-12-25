@@ -9,10 +9,12 @@
       Title="Products"  d:Background="White">
 
     <StackPanel Margin="30">
+        
+        <!--Main Header-->
         <TextBlock Text="Products Management" Style="{StaticResource MainHeading}"/>
-
         <Separator Width="1400"/>
         
+        <!--Data Input Column Grid-->
         <Grid Margin="0,0,0,40">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="400"/>
@@ -21,17 +23,23 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Column="0" Margin="20">
+                
+                <!--Name Input-->
                 <Label Content="Name" Style="{StaticResource MainInputLabel}"/>
                 <TextBox Style="{StaticResource MainInputTextBox}"/>
 
+                <!--Description Input-->
                 <Label Content="Description" Margin="0,35,0,0" Style="{StaticResource MainInputLabel}"/>
                 <TextBox Style="{StaticResource MainInputTextBox}"/>
             </StackPanel>
 
             <StackPanel Grid.Column="2" Margin="20">
+                
+                <!--Price Input-->
                 <Label Content="Price" Style="{StaticResource MainInputLabel}"/>
                 <TextBox Style="{StaticResource MainInputTextBox}"/>
 
+                <!--Image Input-->
                 <Label Content="Choose Image" Margin="0,35,0,0" Style="{StaticResource MainInputLabel}"/>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -39,7 +47,10 @@
                         <ColumnDefinition Width="1*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
 
-                    <TextBox Grid.Column="0" Style="{StaticResource MainInputTextBox}"/>
+                    <!--Selected Image Details Preview-->
+                    <TextBox IsEnabled="True" Grid.Column="0" Style="{StaticResource MainInputTextBox}"/>
+                    
+                    <!--Image Selection Button-->
                     <Button Grid.Column="1" 
                             Content="Choose" 
                             Margin="10,0,0,0"
@@ -48,6 +59,7 @@
             </StackPanel>
         </Grid>
 
+        <!--Submit Button-->
         <Button HorizontalAlignment="Left" 
                 Margin="10,0" 
                 Width="380" 

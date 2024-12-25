@@ -9,12 +9,12 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Categories">
 
-    <!--Category View Model DataContext-->
+    <!--Page DataContext-->
     <Page.DataContext>
         <vm:CategoryViewModel/>
     </Page.DataContext>
 
-    <!--Categories List View-->
+    <!--Categories ListView-->
     <ListView Grid.Row="0" ItemsSource="{Binding CategoriesToList}" 
               BorderBrush="Transparent"
               BorderThickness="0"
