@@ -24,7 +24,7 @@
         <ListView Grid.Row="0" ItemsSource="{Binding CategoriesToList}" 
                   BorderBrush="Transparent"
                   BorderThickness="0"
-                  ItemContainerStyle="{StaticResource SubListViewItemTemplate_Tags}">
+                  ItemContainerStyle="{StaticResource MainListViewItemTemplate_Categories}">
             
         </ListView>
         
