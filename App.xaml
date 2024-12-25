@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:Product_Manager"
              StartupUri="MainWindow.xaml">
     
+    <!--Merged Dictionaries-->
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -12,12 +13,15 @@
                 <ResourceDictionary Source="Resources\Sizes.xaml"/>
                 <ResourceDictionary Source="Resources\Colors.xaml"/>
                 <ResourceDictionary Source="Resources\Buttons.xaml"/>
-                <ResourceDictionary Source="Resources\ListViews.xaml"/>
                 <ResourceDictionary Source="Resources\Headings.xaml"/>
                 
                 <!--Templates-->
                 <ResourceDictionary Source="Templates\TabTemplate.xaml"/>
+                <ResourceDictionary Source="Templates\ListViewTemplate.xaml"/>
+                <ResourceDictionary Source="Templates\ButtonTemplate.xaml"/>
+                
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
+    
 </Application>

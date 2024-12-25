@@ -26,7 +26,7 @@ namespace Product_Manager.Repositories
 
             _products = new List<Products>
             {
-                new Products(1,"Phone",10000,"Good Phone","",_categories,_tags),
+                new Products(1,"Phone",10000,"Good Phone","pack://application:,,,/Assets (Solution)/Images/Product.jpg",_categories,_tags),
                 new Products(2,"Laptop",50000,"Good Laptop","",_categories,_tags),
                 new Products(3,"Table",500,"Good Table","",_categories,_tags),
                 new Products(4,"Bike",55000,"Good Bike","",_categories,_tags),

@@ -19,7 +19,7 @@
             <RowDefinition Height="1*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <ListView Grid.Row="0" ItemsSource="{Binding TagsToList}" Style="{StaticResource ProductListView}"/>
+        <ListView Grid.Row="0" ItemsSource="{Binding TagsToList}" />
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Style="{StaticResource PrimaryButton}" Content="New"></Button>
             <Button Style="{StaticResource DeleteButton}" Content="Delete"></Button>

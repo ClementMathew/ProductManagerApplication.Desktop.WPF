@@ -10,6 +10,7 @@ namespace Product_Manager.Models
     {
         public int CategoryId { get; set; }
         public string Name { get; set; }
+
         public Categories(int categoryId,string name)
         {
             CategoryId = categoryId;

@@ -16,12 +16,12 @@ namespace Product_Manager.Models
         public List<Categories> CategoryList { get; set; }
         public List<Tags> TagsList { get; set; }
 
-        public Products(int productId, 
-            string name, 
-            int price, 
-            string description, 
-            string imageUrl, 
-            List<Categories> categories, 
+        public Products(int productId,
+            string name,
+            int price,
+            string description,
+            string imageUrl,
+            List<Categories> categories,
             List<Tags> tags)
         {
             ProductID = productId;

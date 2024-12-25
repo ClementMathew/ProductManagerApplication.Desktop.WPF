@@ -21,7 +21,12 @@
         </Grid.RowDefinitions>
 
         <!--Categories List View-->
-        <ListView Grid.Row="0" ItemsSource="{Binding CategoriesToList}" Style="{StaticResource ProductListView}"/>
+        <ListView Grid.Row="0" ItemsSource="{Binding CategoriesToList}" 
+                  BorderBrush="Transparent"
+                  BorderThickness="0"
+                  ItemContainerStyle="{StaticResource SubListViewItemTemplate_Tags}">
+            
+        </ListView>
         
         <!--New and Delete Buttons-->
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">

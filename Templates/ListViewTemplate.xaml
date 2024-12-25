@@ -1,17 +1,98 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <!--Products List View Template-->
-    <DataTemplate x:Key="CustomProductListView">
-        <StackPanel Orientation="Horizontal">
-            <Image Height="50" Width="50" Source="{Binding ImageUrl}"></Image>
-            <StackPanel>
-                <TextBlock Text="{Binding Name}"></TextBlock>
-                <TextBlock Text="{Binding Description}"></TextBlock>
-            </StackPanel>
-            <Border>
-                <TextBlock Text="{Binding Price}"></TextBlock>
-            </Border>
-        </StackPanel>
-    </DataTemplate>
+    <!--Products Main ListView Template-->
+    <Style TargetType="ListViewItem" x:Key="MainListViewItemTemplate">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListViewItem">
+                    <Border x:Name="MainListViewItemBorder" 
+                            Background="Transparent" 
+                            BorderThickness="1" 
+                            CornerRadius="10"
+                            Margin="0,3"
+                            BorderBrush="{StaticResource PrimaryColorBrush}" 
+                            SnapsToDevicePixels="True">
+                        <ContentPresenter/>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="MainListViewItemBorder" Property="Background" Value="{StaticResource AccentColorBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="MainListViewItemBorder" Property="Background" Value="{StaticResource AccentColorBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--Products Main ListView Template (Categories)-->
+    <Style TargetType="ListViewItem" x:Key="MainListViewItemTemplate_Categories">
+        <Setter Property="Foreground" Value="{StaticResource PrimaryColorBrush}"/>
+        <Setter Property="FontWeight" Value="DemiBold"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListViewItem">
+                    <Border x:Name="SubListViewItemBorder"
+                    Background="{StaticResource SecondaryColorBrush}"
+                    BorderBrush="{StaticResource PrimaryColorBrush}"
+                    BorderThickness="1"
+                    CornerRadius="5"
+                    Padding="7,3"
+                    Margin="3,5"
+                    SnapsToDevicePixels="True">
+                        <ContentPresenter/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--Products Sub ListView Template (Categories)-->
+    <Style TargetType="ListViewItem" x:Key="SubListViewItemTemplate_Categories">
+        <Setter Property="Foreground" Value="{StaticResource SecondaryColorBrush}"/>
+        <Setter Property="FontWeight" Value="DemiBold"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListViewItem">
+                    <Border x:Name="SubListViewItemBorder"
+                            Background="{StaticResource PrimaryColorBrush}"
+                            BorderBrush="Transparent"
+                            BorderThickness="0"
+                            CornerRadius="5"
+                            Padding="7,3"
+                            Margin="3,5"
+                            SnapsToDevicePixels="True">
+                        <ContentPresenter/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--Products Sub ListView Template (Tags)-->
+    <Style TargetType="ListViewItem" x:Key="SubListViewItemTemplate_Tags">
+        <Setter Property="Foreground" Value="{StaticResource PrimaryColorBrush}"/>
+        <Setter Property="FontWeight" Value="DemiBold"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListViewItem">
+                    <Border x:Name="SubListViewItemBorder"
+                        Background="{StaticResource SecondaryColorBrush}"
+                        BorderBrush="{StaticResource PrimaryColorBrush}"
+                        BorderThickness="1"
+                        CornerRadius="5"
+                        Padding="7,3"
+                        Margin="3,5"
+                        SnapsToDevicePixels="True">
+                        <ContentPresenter/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

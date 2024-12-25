@@ -10,6 +10,7 @@ namespace Product_Manager.Models
     {
         public int TagId { get; set; }
         public string Name { get; set; }
+
         public Tags(int tagId,string name)
         {
             TagId = tagId;

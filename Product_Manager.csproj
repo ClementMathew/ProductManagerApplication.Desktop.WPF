@@ -59,6 +59,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Converters\PriceConverter.cs" />
     <Compile Include="Models\Categories.cs" />
     <Compile Include="Models\Tags.cs" />
     <Compile Include="Pages\CategoriesManagement.xaml.cs">
@@ -145,10 +146,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\ListViews.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Resources\Sizes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -162,10 +159,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Templates\TabTemplate.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Templates\TextBoxTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -203,12 +196,14 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Resource Include="Assets %28Solution%29\ICO Type\logo.ico" />
+    <Resource Include="Assets %28Solution%29\Images\Product.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets %28Solution%29\PNG Type\logo.png" />
+    <Resource Include="Assets %28Solution%29\Icons\logo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets %28Solution%29\Icons\logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -5,11 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Product_Manager"
         xmlns:vm="clr-namespace:Product_Manager.ViewModels"
-        mc:Ignorable="d"
+        mc:Ignorable="d" ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
-        Title="Product Manager" Height="900" Width="1600" Icon="Assets (Solution)\ICO Type\logo.ico">
+        Title="Product Manager" Height="900" Width="1600" Icon="Assets (Solution)\Icons\logo.ico">
 
+    <!--Window Resources-->
     <Window.Resources>
+        
         <!--Seperator Style-->
         <Style x:Key="CustomSeperator" TargetType="Separator">
             <Style.Setters>
@@ -18,7 +20,7 @@
         </Style>
     </Window.Resources>
 
-    <!--Outer Grid-->
+    <!--Outer Row Grid-->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -43,7 +45,8 @@
                     Grid.Column="0"
                     CornerRadius="50" 
                     Margin="-50,35,0,35">
-                <Image Source="Assets (Solution)\PNG Type\logo.png" Height="80" HorizontalAlignment="Right" Margin="15,0"/>
+
+                <Image Source="Assets (Solution)\Icons\logo.png" Height="80" HorizontalAlignment="Right" Margin="15,0"/>
             </Border>
 
             <!--Header Title Section-->
@@ -54,10 +57,14 @@
                 </Grid.RowDefinitions>
 
                 <StackPanel Grid.Row="1">
+                    
+                    <!--Main Header-->
                     <TextBlock Text="Product Manager" 
                            FontWeight="Bold"
                            FontSize="{StaticResource Font2XL}" 
                            Foreground="{StaticResource SecondaryColorBrush}"/>
+                    
+                    <!--Sub Header-->
                     <TextBlock Text="You give us the products... we will manage the rest of it...!"  
                            Foreground="{StaticResource SecondaryColorBrush}"
                            FontSize="{StaticResource FontMedium}"/>

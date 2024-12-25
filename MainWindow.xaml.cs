@@ -26,12 +26,26 @@ namespace Product_Manager
             HomeStartup();
         }
 
+        /// <summary>
+        /// HomeStartup Function
+        /// --------------------
+        /// 1. Sets button background white for selected.
+        /// 2. Sets source of main frame to home page.
+        /// </summary>
         private void HomeStartup()
         {
             HomeButton.Background = Brushes.White;
             MainWindowFrame.Source = new Uri("Pages/Home.xaml", UriKind.Relative);
         }
 
+        /// <summary>
+        /// Button_Click Event
+        /// ------------------
+        /// 1. ClearButtonSelection() Function called to clear all selection in navigation buttons.
+        /// 2. Sets button backgrounds and main frame sources according to the selected button content using switch case.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var button = (Button)sender;
@@ -60,6 +74,11 @@ namespace Product_Manager
             }
         }
 
+        /// <summary>
+        /// ClearButtonSelection Function
+        /// -----------------------------
+        /// 1. Sets all buttons background to transparent to avoid selection.
+        /// </summary>
         private void ClearButtonSelection()
         {
             HomeButton.Background = Brushes.Transparent;
