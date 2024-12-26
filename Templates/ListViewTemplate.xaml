@@ -104,5 +104,39 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
+    <!--ListView Input Template-->
+    <Style TargetType="ListViewItem" x:Key="InputListViewItemTemplate">
+        <Setter Property="Foreground" Value="{StaticResource TextColorBrush}"/>
+        <Setter Property="FontWeight" Value="DemiBold"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListViewItem">
+                    <Border x:Name="InputListViewItemBorder"
+                        Background="{StaticResource AccentColorBrush}"
+                        BorderBrush="Transparent"
+                        BorderThickness="0"
+                        CornerRadius="5"
+                        Padding="7,3"
+                        Margin="3,5"
+                        SnapsToDevicePixels="True">
+                        <ContentPresenter/>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="InputListViewItemBorder" Property="Background" Value="{StaticResource PrimaryColorBrush}"/>
+                            <Setter Property="Foreground" Value="{StaticResource SecondaryColorBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="InputListViewItemBorder" Property="Background" Value="{StaticResource PrimaryColorBrush}"/>
+                            <Setter Property="Foreground" Value="{StaticResource SecondaryColorBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
 </ResourceDictionary>

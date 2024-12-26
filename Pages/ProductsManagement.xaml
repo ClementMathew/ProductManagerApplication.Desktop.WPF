@@ -4,18 +4,25 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Product_Manager.Pages"
+      xmlns:vm="clr-namespace:Product_Manager.ViewModels"
+      xmlns:ap="clr-namespace:Product_Manager.Attached_Properties"
       mc:Ignorable="d" 
       d:DesignHeight="700" d:DesignWidth="1400"
       Title="Products"  d:Background="White">
 
+    <!--Page DataContext-->
+    <Page.DataContext>
+        <vm:ProductViewModel/>
+    </Page.DataContext>
+
     <StackPanel Margin="30">
-        
+
         <!--Main Header-->
         <TextBlock Text="Products Management" Style="{StaticResource MainHeading}"/>
         <Separator Width="1400"/>
-        
+
         <!--Data Input Column Grid-->
-        <Grid Margin="0,0,0,40">
+        <Grid Margin="0,0,0,30">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="400"/>
                 <ColumnDefinition Width="30"/>
@@ -23,24 +30,58 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Column="0" Margin="20">
-                
+
                 <!--Name Input-->
                 <Label Content="Name" Style="{StaticResource MainInputLabel}"/>
-                <TextBox Style="{StaticResource MainInputTextBox}"/>
+                <TextBox Style="{StaticResource MainInputTextBox}"
+                         Text="{Binding Name,UpdateSourceTrigger=PropertyChanged}"/>
 
                 <!--Description Input-->
-                <Label Content="Description" Margin="0,35,0,0" Style="{StaticResource MainInputLabel}"/>
-                <TextBox Style="{StaticResource MainInputTextBox}"/>
+                <Label Content="Description" Margin="0,25,0,0" Style="{StaticResource MainInputLabel}"/>
+                <TextBox Style="{StaticResource MainInputTextBox}"
+                         Text="{Binding Description,UpdateSourceTrigger=PropertyChanged}"/>
+
+                <!--Categories Input-->
+                <Label Content="Choose Categories" Margin="0,25,0,0" Style="{StaticResource MainInputLabel}"/>
+                <ListView BorderBrush="{StaticResource PrimaryColorBrush}"
+                          BorderThickness="2"
+                          ap:ListViewSelectedItems.SelectedItems="{Binding SelectedCategoryItems}"
+                          ItemsSource="{Binding CategoriesToList}" 
+                          ItemContainerStyle="{StaticResource InputListViewItemTemplate}"
+                          ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                          SelectionMode="Multiple" 
+                          Padding="2"
+                          Height="70">
+
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Width="350" Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+
+                    <ListBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="3"/>
+                        </Style>
+                    </ListBox.Resources>
+                </ListView>
             </StackPanel>
 
             <StackPanel Grid.Column="2" Margin="20">
-                
+
                 <!--Price Input-->
                 <Label Content="Price" Style="{StaticResource MainInputLabel}"/>
-                <TextBox Style="{StaticResource MainInputTextBox}"/>
+                <TextBox Style="{StaticResource MainInputTextBox}"
+                         Text="{Binding Price,UpdateSourceTrigger=PropertyChanged}"/>
 
                 <!--Image Input-->
-                <Label Content="Choose Image" Margin="0,35,0,0" Style="{StaticResource MainInputLabel}"/>
+                <Label Content="Choose Image" Margin="0,25,0,0" Style="{StaticResource MainInputLabel}"/>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="2*"></ColumnDefinition>
@@ -48,14 +89,48 @@
                     </Grid.ColumnDefinitions>
 
                     <!--Selected Image Details Preview-->
-                    <TextBox IsEnabled="True" Grid.Column="0" Style="{StaticResource MainInputTextBox}"/>
-                    
+                    <TextBox IsEnabled="True" Grid.Column="0" 
+                             Style="{StaticResource MainInputTextBox}"
+                             Text="{Binding ImageName}"/>
+
                     <!--Image Selection Button-->
                     <Button Grid.Column="1" 
                             Content="Choose" 
                             Margin="10,0,0,0"
+                            Command="{Binding ChooseImageCommand}"
                             Style="{StaticResource SecondaryButton}"/>
                 </Grid>
+
+                <!--Tags Input-->
+                <Label Content="Choose Tags" Margin="0,25,0,0" Style="{StaticResource MainInputLabel}"/>
+                <ListView BorderBrush="{StaticResource PrimaryColorBrush}"
+                          BorderThickness="2"
+                          ap:ListViewSelectedItems.SelectedItems="{Binding SelectedTagItems}"
+                          ItemsSource="{Binding TagsToList}" 
+                          ItemContainerStyle="{StaticResource InputListViewItemTemplate}"
+                          ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                          SelectionMode="Multiple" 
+                          Padding="2"
+                          Height="70">
+
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Width="350" Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+
+                    <ListBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="3"/>
+                        </Style>
+                    </ListBox.Resources>
+                </ListView>
             </StackPanel>
         </Grid>
 
@@ -64,6 +139,7 @@
                 Margin="10,0" 
                 Width="380" 
                 Content="Submit" 
+                Command="{Binding ProductsManagementSubmitCommand}"
                 Style="{StaticResource PrimaryButton}"/>
     </StackPanel>
 </Page>

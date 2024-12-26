@@ -50,7 +50,7 @@ namespace Product_Manager.ViewModels
 
         public CategoryViewModel()
         {
-            _repository = new InMemoryCategoryRepository();
+            _repository = new JsonCategoryRepository();
             _categories = new List<Categories>(_repository.GetAll());
 
             CategoriesToList = new ObservableCollection<Categories>(_categories);

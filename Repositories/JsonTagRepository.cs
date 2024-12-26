@@ -7,7 +7,7 @@ using Product_Manager.Models;
 
 namespace Product_Manager.Repositories
 {
-    internal class InMemoryTagRepository : IRepository<Tags>
+    internal class JsonTagRepository : IRepository<Tags>
     {
         private List<Tags> _tags = new List<Tags>
         {

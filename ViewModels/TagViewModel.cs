@@ -18,7 +18,7 @@ namespace Product_Manager.ViewModels
 
         public TagViewModel()
         {
-            _tagRepository = new InMemoryTagRepository();
+            _tagRepository = new JsonTagRepository();
             _tags = new List<Tags>(_tagRepository.GetAll());
 
             TagsToList = new ObservableCollection<Tags>(_tags);

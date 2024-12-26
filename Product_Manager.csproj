@@ -39,6 +39,7 @@
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -58,6 +59,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Attached Properties\ListViewSelectedItems.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Converters\PriceConverter.cs" />
     <Compile Include="Models\Categories.cs" />
@@ -83,9 +85,9 @@
     <Compile Include="Pages\TagsManagement.xaml.cs">
       <DependentUpon>TagsManagement.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Repositories\InMemoryCategoryRepository.cs" />
-    <Compile Include="Repositories\InMemoryProductRepository.cs" />
-    <Compile Include="Repositories\InMemoryTagRepository.cs" />
+    <Compile Include="Repositories\JsonCategoryRepository.cs" />
+    <Compile Include="Repositories\JsonProductRepository.cs" />
+    <Compile Include="Repositories\JsonTagRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="ViewModels\CategoryViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />

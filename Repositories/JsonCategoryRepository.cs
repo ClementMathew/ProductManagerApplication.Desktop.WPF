@@ -10,12 +10,12 @@ using Product_Manager.Models;
 
 namespace Product_Manager.Repositories
 {
-    internal class InMemoryCategoryRepository : IRepository<Categories>
+    internal class JsonCategoryRepository : IRepository<Categories>
     {
         private List<Categories> _categories;
         private string _filePath;
 
-        public InMemoryCategoryRepository()
+        public JsonCategoryRepository()
         {
             _categories = new List<Categories>
             {

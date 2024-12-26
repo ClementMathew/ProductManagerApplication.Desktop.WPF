@@ -14,6 +14,7 @@ namespace Product_Manager.Repositories
 
         IEnumerable<T> GetAll();
     }
+
     internal interface IProductRepository<T>
     {
         void AddItem(int id, string name, int price, string description, string imageUrl, ObservableCollection<Categories> categories, ObservableCollection<Tags> tags);
