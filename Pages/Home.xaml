@@ -4,9 +4,15 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Product_Manager.Pages"
+      xmlns:vm="clr-namespace:Product_Manager.ViewModels"
       mc:Ignorable="d" 
       d:DesignHeight="700" d:DesignWidth="1400"
       Title="Home" d:Background="White">
+
+    <!--Page DataContext-->
+    <Page.DataContext>
+        <vm:HomeViewModel/>
+    </Page.DataContext>
 
     <StackPanel Margin="30">
         <!--Home Header-->
@@ -15,7 +21,9 @@
 
             <!--Header Delete Button-->
             <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Style="{StaticResource DeleteButton}" Content="Delete"></Button>
+                <Button Style="{StaticResource DeleteButton}"
+                        Command="{Binding HomeDeleteCommand}"
+                        Content="Delete"></Button>
             </StackPanel>
         </DockPanel>
 

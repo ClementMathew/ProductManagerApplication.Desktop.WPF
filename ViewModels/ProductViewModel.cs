@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,20 +13,17 @@ using Microsoft.Win32;
 using Product_Manager.Commands;
 using Product_Manager.Models;
 using Product_Manager.Repositories;
+using Product_Manager.Validators;
 
 namespace Product_Manager.ViewModels
 {
     internal class ProductViewModel : ViewModelBase, IDataErrorInfo
     {
-        private IProductRepository<Products> _productRepository;
-        private IEnumerable<Products> _products;
-
+        private IRepository<Products> _productRepository;
         private IRepository<Categories> _categoryRepository;
-        private IEnumerable<Categories> _categories;
-
         private IRepository<Tags> _tagsRepository;
-        private IEnumerable<Tags> _tags;
 
+        private BitmapImage _imageSource;
         private List<ValidationResult> _results;
 
         public ObservableCollection<Products> ProductsToList { get; set; }
@@ -50,12 +48,14 @@ namespace Product_Manager.ViewModels
             {
                 _name = value;
                 OnPropertyChanged();
+                ProductsManagementSubmitCommand?.OnCanExecuteChanged();
             }
         }
 
         private int _price;
 
         [Required(ErrorMessage = "Price can't be empty.")]
+        [PriceValidation]
 
         public int Price
         {
@@ -64,10 +64,14 @@ namespace Product_Manager.ViewModels
             {
                 _price = value;
                 OnPropertyChanged();
+                ProductsManagementSubmitCommand?.OnCanExecuteChanged();
             }
         }
 
         private string _description;
+
+        [Required(ErrorMessage = "Description can't be empty.")]
+        [MinLength(15, ErrorMessage = "Minimum length not satisfied.")]
 
         public string Description
         {
@@ -76,10 +80,13 @@ namespace Product_Manager.ViewModels
             {
                 _description = value;
                 OnPropertyChanged();
+                ProductsManagementSubmitCommand?.OnCanExecuteChanged();
             }
         }
 
         private string _imageName;
+
+        [Required(ErrorMessage = "Must choose image.")]
 
         public string ImageName
         {
@@ -88,18 +95,7 @@ namespace Product_Manager.ViewModels
             {
                 _imageName = value;
                 OnPropertyChanged();
-            }
-        }
-
-        private BitmapImage _imageSource;
-
-        public BitmapImage ImageSource
-        {
-            get { return _imageSource; }
-            set
-            {
-                _imageSource = value;
-                OnPropertyChanged();
+                ProductsManagementSubmitCommand?.OnCanExecuteChanged();
             }
         }
 
@@ -112,17 +108,12 @@ namespace Product_Manager.ViewModels
         public ProductViewModel()
         {
             _productRepository = new JsonProductRepository();
-            _products = _productRepository.GetAll();
-
             _categoryRepository = new JsonCategoryRepository();
-            _categories = _categoryRepository.GetAll();
-
             _tagsRepository = new JsonTagRepository();
-            _tags = _tagsRepository.GetAll();
 
-            ProductsToList = new ObservableCollection<Products>(_products);
-            CategoriesToList = new ObservableCollection<Categories>(_categories);
-            TagsToList = new ObservableCollection<Tags>(_tags);
+            ProductsToList = new ObservableCollection<Products>(_productRepository.GetAll());
+            CategoriesToList = new ObservableCollection<Categories>(_categoryRepository.GetAll());
+            TagsToList = new ObservableCollection<Tags>(_tagsRepository.GetAll());
 
             SelectedCategoryItems = new ObservableCollection<Categories>();
             SelectedTagItems = new ObservableCollection<Tags>();
@@ -133,12 +124,42 @@ namespace Product_Manager.ViewModels
 
         private bool CanHandleProductsManagementSubmitCommand(object arg)
         {
-            return true;
+            return !_results.Any();
         }
 
         private void HandleProductsManagementSubmitCommand(object obj)
         {
-            MessageBox.Show($"{Name}-{Price}-{Description}-{ImageSource}-{SelectedCategoryItems[0].Name}-{SelectedTagItems.Count}");
+            var productId = Guid.NewGuid().ToString();
+
+            string imageSourceBase64;
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                PngBitmapEncoder encoder = new PngBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create(_imageSource));
+                encoder.Save(memoryStream);
+                imageSourceBase64 = Convert.ToBase64String(memoryStream.ToArray());
+            };
+
+            var product = new Products(productId,
+                Name, Price, Description, imageSourceBase64, SelectedCategoryItems, SelectedTagItems);
+
+            _productRepository.AddItem(product);
+            ProductsToList.Add(product);
+
+            ClearFields();
+
+            MessageBox.Show("Product successfully added.");
+        }
+
+        private void ClearFields()
+        {
+            Name = string.Empty;
+            Price = default;
+            Description = string.Empty;
+            ImageName = string.Empty;
+            _imageSource = null;
+            SelectedCategoryItems.Clear();
+            SelectedTagItems.Clear();
         }
 
         private bool CanHandleChooseImageCommand(object arg)
@@ -160,11 +181,11 @@ namespace Product_Manager.ViewModels
 
                     BitmapImage bitmap = new BitmapImage();
                     bitmap.BeginInit();
-                    bitmap.UriSource = new Uri(selectedFilePath);
+                    bitmap.UriSource = new Uri(selectedFilePath, UriKind.Absolute);
                     bitmap.EndInit();
 
                     ImageName = selectedFilePath;
-                    ImageSource = bitmap;
+                    _imageSource = bitmap;
                 }
                 catch (Exception e)
                 {

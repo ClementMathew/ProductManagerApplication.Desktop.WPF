@@ -4,24 +4,25 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace Product_Manager.Models
 {
     public class Products
     {
-        public int ProductID { get; set; }
+        public string ProductID { get; set; }
         public string Name { get; set; }
         public int Price { get; set; }
         public string Description { get; set; }
-        public string ImageUrl { get; set; }
+        public string ImageSourceBase64 { get; set; }
         public ObservableCollection<Categories> CategoryList { get; set; }
         public ObservableCollection<Tags> TagsList { get; set; }
 
-        public Products(int productId,
+        public Products(string productId,
             string name,
             int price,
             string description,
-            string imageUrl,
+            string imageSourceBase64,
             ObservableCollection<Categories> categories,
             ObservableCollection<Tags> tags)
         {
@@ -29,7 +30,7 @@ namespace Product_Manager.Models
             Name = name;
             Price = price;
             Description = description;
-            ImageUrl = imageUrl;
+            ImageSourceBase64 = imageSourceBase64;
             CategoryList = categories;
             TagsList = tags;
         }

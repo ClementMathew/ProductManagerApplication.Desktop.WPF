@@ -8,10 +8,10 @@ namespace Product_Manager.Models
 {
     public class Tags
     {
-        public int TagId { get; set; }
+        public string TagId { get; set; }
         public string Name { get; set; }
 
-        public Tags(int tagId,string name)
+        public Tags(string tagId,string name)
         {
             TagId = tagId;
             Name = name;

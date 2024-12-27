@@ -61,6 +61,7 @@
     </ApplicationDefinition>
     <Compile Include="Attached Properties\ListViewSelectedItems.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Converters\EmptyImageConverter.cs" />
     <Compile Include="Converters\PriceConverter.cs" />
     <Compile Include="Models\Categories.cs" />
     <Compile Include="Models\Tags.cs" />
@@ -89,7 +90,9 @@
     <Compile Include="Repositories\JsonProductRepository.cs" />
     <Compile Include="Repositories\JsonTagRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="Validators\PriceValidationAttribute.cs" />
     <Compile Include="ViewModels\CategoryViewModel.cs" />
+    <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
     <Compile Include="ViewModels\TagViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />

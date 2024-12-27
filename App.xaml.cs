@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using Product_Manager.ViewModels;
 
 namespace Product_Manager
 {
@@ -13,5 +14,6 @@ namespace Product_Manager
     /// </summary>
     public partial class App : Application
     {
+
     }
 }

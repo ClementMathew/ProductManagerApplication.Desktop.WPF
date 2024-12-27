@@ -34,12 +34,13 @@
                 <!--Name Input-->
                 <Label Content="Name" Style="{StaticResource MainInputLabel}"/>
                 <TextBox Style="{StaticResource MainInputTextBox}"
-                         Text="{Binding Name,UpdateSourceTrigger=PropertyChanged}"/>
+                         Text="{Binding Name,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}"/>
 
                 <!--Description Input-->
                 <Label Content="Description" Margin="0,25,0,0" Style="{StaticResource MainInputLabel}"/>
                 <TextBox Style="{StaticResource MainInputTextBox}"
-                         Text="{Binding Description,UpdateSourceTrigger=PropertyChanged}"/>
+                         AcceptsReturn="True"
+                         Text="{Binding Description,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}"/>
 
                 <!--Categories Input-->
                 <Label Content="Choose Categories" Margin="0,25,0,0" Style="{StaticResource MainInputLabel}"/>
@@ -78,7 +79,7 @@
                 <!--Price Input-->
                 <Label Content="Price" Style="{StaticResource MainInputLabel}"/>
                 <TextBox Style="{StaticResource MainInputTextBox}"
-                         Text="{Binding Price,UpdateSourceTrigger=PropertyChanged}"/>
+                         Text="{Binding Price,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}"/>
 
                 <!--Image Input-->
                 <Label Content="Choose Image" Margin="0,25,0,0" Style="{StaticResource MainInputLabel}"/>
@@ -91,7 +92,7 @@
                     <!--Selected Image Details Preview-->
                     <TextBox IsEnabled="True" Grid.Column="0" 
                              Style="{StaticResource MainInputTextBox}"
-                             Text="{Binding ImageName}"/>
+                             Text="{Binding ImageName,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}"/>
 
                     <!--Image Selection Button-->
                     <Button Grid.Column="1" 

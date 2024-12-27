@@ -12,16 +12,14 @@ namespace Product_Manager.Repositories
 {
     internal class JsonCategoryRepository : IRepository<Categories>
     {
-        private List<Categories> _categories;
         private string _filePath;
+        private List<Categories> _categories;
 
         public JsonCategoryRepository()
         {
             _categories = new List<Categories>
             {
-                new Categories(1,"Electronics"),
-                new Categories(2,"Automobiles"),
-                new Categories(3,"Others"),
+                new Categories("123-456-7890","Others"),
             };
 
             string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
@@ -35,7 +33,7 @@ namespace Product_Manager.Repositories
 
             if (!File.Exists(_filePath))
             {
-                JsonWrite(_filePath);
+                JsonWrite();
             }
             else
             {
@@ -44,16 +42,16 @@ namespace Product_Manager.Repositories
             }
         }
 
-        public void JsonWrite(string filePath)
+        public void JsonWrite()
         {
             string jsonText = JsonConvert.SerializeObject(_categories, Formatting.Indented);
-            File.WriteAllText(filePath, jsonText);
+            File.WriteAllText(_filePath, jsonText);
         }
 
-        public void AddItem(int id, string name)
+        public void AddItem(Categories category)
         {
-            _categories.Add(new Categories(id, name));
-            JsonWrite(_filePath);
+            _categories.Add(category);
+            JsonWrite();
         }
 
         public IEnumerable<Categories> GetAll()

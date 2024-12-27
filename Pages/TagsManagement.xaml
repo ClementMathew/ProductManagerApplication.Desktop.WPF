@@ -40,12 +40,14 @@
 
                     <!--TagID Preview-->
                     <TextBox Grid.Column="0"
+                             Text="{Binding TagId,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"
                              Style="{StaticResource MainInputTextBox}"/>
 
                     <!--TagID Generate Button-->
                     <Button Grid.Column="1" 
                             Content="Generate" 
                             Margin="10,0,0,0"
+                            Command="{Binding TagIdGenerateCommand}"
                             Style="{StaticResource SecondaryButton}"/>
                 </Grid>
             </StackPanel>
@@ -53,7 +55,8 @@
             <!--Tag Name Input-->
             <StackPanel Grid.Column="2" Margin="20">
                 <Label Content="Tag Name" Style="{StaticResource MainInputLabel}"/>
-                <TextBox Style="{StaticResource MainInputTextBox}"/>
+                <TextBox Text="{Binding Name,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}"
+                    Style="{StaticResource MainInputTextBox}"/>
             </StackPanel>
         </Grid>
 
@@ -62,6 +65,7 @@
                 Margin="10,0" 
                 Width="380" 
                 Content="Submit" 
+                Command="{Binding TagManagementSubmitCommand}"
                 Style="{StaticResource PrimaryButton}"/>
     </StackPanel>
 </Page>
