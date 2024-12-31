@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Product_Manager.Pages;
+using Product_Manager.ViewModels;
 
 namespace Product_Manager
 {
@@ -30,26 +22,36 @@ namespace Product_Manager
         /// HomeStartup Function
         /// --------------------
         /// 1. Sets button background white for selected.
-        /// 2. Sets source of main frame to home page.
+        /// 2. 
         /// </summary>
         private void HomeStartup()
         {
             HomeButton.Background = Brushes.White;
-            MainWindowFrame.Source = new Uri("Pages/Home.xaml", UriKind.Relative);
+
+            ProductViewModel productViewModel = new ProductViewModel();
+
+            Home home = new Home();
+            home.DataContext = productViewModel;
+            MainWindowFrame.Content = home;
+
+            Pages.Home_Pages.Products products = new Pages.Home_Pages.Products();
+            products.DataContext = productViewModel;
+            home.ProductsFrame.Content = products;
         }
 
         /// <summary>
         /// Button_Click Event
         /// ------------------
         /// 1. ClearButtonSelection() Function called to clear all selection in navigation buttons.
-        /// 2. Sets button backgrounds and main frame sources according to the selected button content using switch case.
+        /// 2. 
+        /// 3. Sets button backgrounds and main frame sources according to the selected button content using switch case.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var button = (Button)sender;
-            var buttonContent = button.Content;
+            Button button = (Button)sender;
+            object buttonContent = button.Content;
 
             ClearButtonSelection();
 
@@ -57,11 +59,21 @@ namespace Product_Manager
             {
                 case "Home":
                     HomeButton.Background = Brushes.White;
-                    MainWindowFrame.Source = new Uri("Pages/Home.xaml",UriKind.Relative);
+
+                    ProductViewModel productViewModel = new ProductViewModel();
+
+                    Home home = new Home();
+                    home.DataContext = productViewModel;
+                    MainWindowFrame.Content = home;
+
+                    Pages.Home_Pages.Products products = new Pages.Home_Pages.Products();
+                    products.DataContext = productViewModel;
+                    home.ProductsFrame.Content = products;
+
                     break;
                 case "Products Management":
                     ProductsButton.Background = Brushes.White;
-                    MainWindowFrame.Source = new Uri("Pages/ProductsManagement.xaml",UriKind.Relative);
+                    MainWindowFrame.Source = new Uri("Pages/ProductsManagement.xaml", UriKind.Relative);
                     break;
                 case "Categories Management":
                     CategoriesButton.Background = Brushes.White;

@@ -56,7 +56,7 @@
             <StackPanel Grid.Column="2" Margin="20">
                 <Label Content="Tag Name" Style="{StaticResource MainInputLabel}"/>
                 <TextBox Text="{Binding Name,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}"
-                    Style="{StaticResource MainInputTextBox}"/>
+                         Style="{StaticResource MainInputTextBox}"/>
             </StackPanel>
         </Grid>
 

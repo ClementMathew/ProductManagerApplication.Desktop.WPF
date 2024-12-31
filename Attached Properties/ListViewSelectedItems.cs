@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -87,11 +82,11 @@ namespace Product_Manager.Attached_Properties
         {
             listView.SelectionChanged -= ListView_SelectionChanged;
 
-            foreach (var item in listView.SelectedItems)
+            foreach (object item in listView.SelectedItems)
             {
-               selectedItems.Remove(item);
+                selectedItems.Remove(item);
             }
-            foreach (var item in selectedItems)
+            foreach (object item in selectedItems)
             {
                 listView.SelectedItems.Add(item);
             }
@@ -109,17 +104,17 @@ namespace Product_Manager.Attached_Properties
         /// <param name="e"></param>
         private static void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(sender is ListView listView)
+            if (sender is ListView listView)
             {
-                var selectedItems = GetSelectedItems(listView);
+                IList selectedItems = GetSelectedItems(listView);
 
-                if(selectedItems != null)
+                if (selectedItems != null)
                 {
-                    foreach( var item in e.RemovedItems)
+                    foreach (object item in e.RemovedItems)
                     {
                         selectedItems.Remove(item);
                     }
-                    foreach (var item in e.AddedItems)
+                    foreach (object item in e.AddedItems)
                     {
                         selectedItems.Add(item);
                     }

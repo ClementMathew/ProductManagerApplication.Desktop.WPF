@@ -15,14 +15,34 @@
     </Page.DataContext>
 
     <!--Categories ListView-->
-    <ListView Grid.Row="0" ItemsSource="{Binding CategoriesToList}" 
+    <ListView Grid.Row="0" 
               BorderBrush="Transparent"
               BorderThickness="0"
+              SelectedItem="{Binding SelectedCategoryItem}"
+              ItemsSource="{Binding CategoriesToList}" 
               ItemContainerStyle="{StaticResource MainListViewItemTemplate_Categories_Tags}">
-        
+
         <ListView.ItemTemplate>
             <DataTemplate>
-                <TextBlock Text="{Binding Name}"/>
+                <StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="15*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <!--Category Name-->
+                        <TextBlock Margin="10,0,0,0"
+                                   VerticalAlignment="Center" 
+                                   Text="{Binding Name}"/>
+                        
+                        <!--Category Delete Button-->
+                        <Button Grid.Column="1" 
+                                Style="{StaticResource DeleteImageButton}"
+                                CommandParameter="{Binding CategoryId}"
+                                Command="{Binding DataContext.DeleteCategoryCommand,RelativeSource={RelativeSource AncestorType=ListView}}"/>
+                    </Grid>
+                </StackPanel>
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>

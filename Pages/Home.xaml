@@ -9,12 +9,8 @@
       d:DesignHeight="700" d:DesignWidth="1400"
       Title="Home" d:Background="White">
 
-    <!--Page DataContext-->
-    <Page.DataContext>
-        <vm:HomeViewModel/>
-    </Page.DataContext>
-
     <StackPanel Margin="30">
+        
         <!--Home Header-->
         <DockPanel >
             <TextBlock DockPanel.Dock="Left" Text="Dashboard" Style="{StaticResource MainHeading}"/>
@@ -23,7 +19,7 @@
             <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Style="{StaticResource DeleteButton}"
                         Command="{Binding HomeDeleteCommand}"
-                        Content="Delete"></Button>
+                        Content="Delete Product"></Button>
             </StackPanel>
         </DockPanel>
 
@@ -32,7 +28,7 @@
 
             <!--Products Tab-->
             <TabItem Header="Products">
-                <Frame Source="Home Pages/Products.xaml"/>
+                <Frame x:Name="ProductsFrame"/>
             </TabItem>
 
             <!--Categories Tab-->

@@ -4,8 +4,6 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using Product_Manager.Commands;
 using Product_Manager.Models;
@@ -22,6 +20,7 @@ namespace Product_Manager.ViewModels
 
         public RelayCommand TagManagementSubmitCommand { get; set; }
         public RelayCommand TagIdGenerateCommand { get; set; }
+        public RelayCommand DeleteTagCommand { get; set; }
 
         #region Properties
 
@@ -57,6 +56,17 @@ namespace Product_Manager.ViewModels
             }
         }
 
+        private Tags _selectedTagItem;
+
+        public Tags SelectedTagItem
+        {
+            get { return _selectedTagItem; }
+            set
+            {
+                _selectedTagItem = value;
+                OnPropertyChanged();
+            }
+        }
 
         #endregion
 
@@ -68,6 +78,25 @@ namespace Product_Manager.ViewModels
 
             TagManagementSubmitCommand = new RelayCommand(HandleTagManagementSubmitCommand, CanHandleTagManagementSubmitCommand);
             TagIdGenerateCommand = new RelayCommand(HandleTagIdGenerateCommand, CanHandleTagIdGenerateCommand);
+            DeleteTagCommand = new RelayCommand(HandleDeleteTagCommand);
+        }
+
+        private void HandleDeleteTagCommand(object obj)
+        {
+            foreach (Tags tag in TagsToList)
+            {
+                if (tag.TagId == (string)obj)
+                {
+                    SelectedTagItem = tag;
+                }
+            }
+            MessageBoxResult result = MessageBox.Show("Delete Tag", "Delete Tag", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                _tagRepository.RemoveItem(SelectedTagItem);
+                TagsToList.Remove(SelectedTagItem);
+            }
         }
 
         private bool CanHandleTagIdGenerateCommand(object arg)
@@ -87,10 +116,20 @@ namespace Product_Manager.ViewModels
 
         private void HandleTagManagementSubmitCommand(object obj)
         {
-            var tag = new Tags(TagId, Name);
+            Tags tag = new Tags(TagId, Name);
 
             _tagRepository.AddItem(tag);
             TagsToList.Add(tag);
+
+            ClearFields();
+
+            MessageBox.Show("Tag added successfully.");
+        }
+
+        private void ClearFields()
+        {
+            Name = string.Empty;
+            TagId = string.Empty;
         }
 
         public string Error { get; }
@@ -99,12 +138,12 @@ namespace Product_Manager.ViewModels
         {
             get
             {
-                var context = new ValidationContext(this) { MemberName = columnName };
+                ValidationContext context = new ValidationContext(this) { MemberName = columnName };
                 _results = new List<ValidationResult>();
 
-                var value = GetType().GetProperty(columnName).GetValue(this);
+                object value = GetType().GetProperty(columnName).GetValue(this);
 
-                var isValid = Validator.TryValidateProperty(value, context, _results);
+                bool isValid = Validator.TryValidateProperty(value, context, _results);
                 return isValid ? null : _results.First().ErrorMessage;
             }
         }

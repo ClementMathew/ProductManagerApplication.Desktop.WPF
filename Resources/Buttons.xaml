@@ -47,6 +47,14 @@
             <Setter Property="BorderThickness" Value="1"/>
         </Style.Setters>
     </Style>
+    
+    <!--Delete Image Button-->
+    <Style TargetType="Button" x:Key="DeleteImageButton">
+        <Style.Setters>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Template" Value="{StaticResource DeleteImageButtonTemplate}"/>
+        </Style.Setters>
+    </Style>
 
     <!--Left Tab Button-->
     <Style TargetType="Button" x:Key="LeftTabButton" BasedOn="{StaticResource CustomLeftTabButton}">

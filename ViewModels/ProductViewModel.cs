@@ -5,8 +5,6 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using Microsoft.Win32;
@@ -19,9 +17,9 @@ namespace Product_Manager.ViewModels
 {
     internal class ProductViewModel : ViewModelBase, IDataErrorInfo
     {
-        private IRepository<Products> _productRepository;
-        private IRepository<Categories> _categoryRepository;
-        private IRepository<Tags> _tagsRepository;
+        private readonly IRepository<Products> _productRepository;
+        private readonly IRepository<Categories> _categoryRepository;
+        private readonly IRepository<Tags> _tagsRepository;
 
         private BitmapImage _imageSource;
         private List<ValidationResult> _results;
@@ -32,6 +30,7 @@ namespace Product_Manager.ViewModels
 
         public RelayCommand ChooseImageCommand { get; set; }
         public RelayCommand ProductsManagementSubmitCommand { get; set; }
+        public RelayCommand HomeDeleteCommand { get; set; }
 
         #region Properties
 
@@ -99,12 +98,33 @@ namespace Product_Manager.ViewModels
             }
         }
 
+        private Products _selectedProductItem;
+
+        public Products SelectedProductItem
+        {
+            get => _selectedProductItem;
+            set
+            {
+                _selectedProductItem = value;
+                OnPropertyChanged();
+                HomeDeleteCommand?.OnCanExecuteChanged();
+            }
+        }
+
         public ObservableCollection<Categories> SelectedCategoryItems { get; set; }
 
         public ObservableCollection<Tags> SelectedTagItems { get; set; }
 
         #endregion
 
+        /// <summary>
+        /// ProductViewModel Constructor
+        /// -----------------------------
+        /// 1. Initialize CategoriesToList by all categories from GetAll function of CategoryRepository.
+        /// 2. Initialize ProductsToList by all products from GetAll function of ProductRepository.
+        /// 3. Initialize TagsToList by all tags from GetAll function of TagRepository.
+        /// 
+        /// </summary>
         public ProductViewModel()
         {
             _productRepository = new JsonProductRepository();
@@ -120,16 +140,60 @@ namespace Product_Manager.ViewModels
 
             ChooseImageCommand = new RelayCommand(HandleChooseImageCommand, CanHandleChooseImageCommand);
             ProductsManagementSubmitCommand = new RelayCommand(HandleProductsManagementSubmitCommand, CanHandleProductsManagementSubmitCommand);
+            HomeDeleteCommand = new RelayCommand(HandleHomeDeleteCommand);
         }
 
+        /// <summary>
+        /// HandleHomeDeleteCommand Function
+        /// --------------------------------
+        /// 1. Deletes a selected product from the product listview.
+        /// 2. If SelectedProductItem is null then a hint is shown and returns.
+        /// 3. If SelectedProductItem is not null then confirmation is asked for deletion.
+        /// 4. If confirmed then SelectedProductItem is removed from Json repository and ProductsToList.
+        /// </summary>
+        /// <param name="obj"></param>
+        private void HandleHomeDeleteCommand(object obj)
+        {
+            if (SelectedProductItem == null)
+            {
+                MessageBox.Show("You must select a product.");
+                return;
+            }
+            MessageBoxResult result = MessageBox.Show("Delete Product", "Delete Product", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                _productRepository.RemoveItem(SelectedProductItem);
+                ProductsToList.Remove(SelectedProductItem);
+            }
+        }
+
+        /// <summary>
+        /// CanHandleProductsManagementSubmitCommand Function
+        /// -------------------------------------------------
+        /// 1. Checks whether _results list of ValidationResults has any errors.
+        /// </summary>
+        /// <param name="arg"></param>
+        /// <returns>
+        ///     1. returns false if there any error present in the _results list.
+        ///     2. returns true if the _results list is empty.
+        /// </returns>
         private bool CanHandleProductsManagementSubmitCommand(object arg)
         {
             return !_results.Any();
         }
 
+        /// <summary>
+        /// HandleProductsManagementSubmitCommand Function
+        /// ----------------------------------------------
+        /// 1. Creates a new product.
+        /// 2. Creates a new productid by Guid.
+        /// 3. 
+        /// </summary>
+        /// <param name="obj"></param>
         private void HandleProductsManagementSubmitCommand(object obj)
         {
-            var productId = Guid.NewGuid().ToString();
+            string productId = Guid.NewGuid().ToString();
 
             string imageSourceBase64;
             using (MemoryStream memoryStream = new MemoryStream())
@@ -140,7 +204,7 @@ namespace Product_Manager.ViewModels
                 imageSourceBase64 = Convert.ToBase64String(memoryStream.ToArray());
             };
 
-            var product = new Products(productId,
+            Products product = new Products(productId,
                 Name, Price, Description, imageSourceBase64, SelectedCategoryItems, SelectedTagItems);
 
             _productRepository.AddItem(product);
@@ -200,12 +264,12 @@ namespace Product_Manager.ViewModels
         {
             get
             {
-                var context = new ValidationContext(this) { MemberName = columnName };
+                ValidationContext context = new ValidationContext(this) { MemberName = columnName };
                 _results = new List<ValidationResult>();
 
-                var value = GetType().GetProperty(columnName).GetValue(this);
+                object value = GetType().GetProperty(columnName).GetValue(this);
 
-                var isValid = Validator.TryValidateProperty(value, context, _results);
+                bool isValid = Validator.TryValidateProperty(value, context, _results);
                 return isValid ? null : _results.First().ErrorMessage;
             }
         }

@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
 
@@ -15,22 +11,23 @@ namespace Product_Manager.Converters
         /// <summary>
         /// Convert Function
         /// ----------------
-        /// 1. 
+        /// 1. Converts Base64String stored in JsonRepository to BitmapImage type for View.
         /// </summary>
         /// <param name="value"></param>
         /// <param name="targetType"></param>
         /// <param name="parameter"></param>
         /// <param name="culture"></param>
         /// <returns>
-        ///  1. 
+        ///     1. returns a default asset image converted to BitmapImage type if value is null from ViewModel.
+        ///     2. returns the Base64String converted to BitmapImage by assigning MemoryStream object to StreamSource.
         /// </returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var imageString = (string)value;
+            string imageString = (string)value;
 
             if (imageString == null)
             {
-                var defaultImage = new BitmapImage(new Uri("pack://application:,,,/Assets (Solution)/Images/Product.jpg"));
+                BitmapImage defaultImage = new BitmapImage(new Uri("pack://application:,,,/Assets (Solution)/Images/Product.jpg"));
                 return defaultImage;
             }
             byte[] imageBytes = System.Convert.FromBase64String(imageString);
@@ -46,6 +43,17 @@ namespace Product_Manager.Converters
             }
         }
 
+        /// <summary>
+        /// ConvertBack Function
+        /// --------------------
+        /// 1. Not Implemented.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();

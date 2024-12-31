@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media.Imaging;
+﻿using System.Collections.ObjectModel;
 
 namespace Product_Manager.Models
 {
@@ -15,7 +9,15 @@ namespace Product_Manager.Models
         public int Price { get; set; }
         public string Description { get; set; }
         public string ImageSourceBase64 { get; set; }
+
+        /// <summary>
+        /// To store the categories to which this product included.
+        /// </summary>
         public ObservableCollection<Categories> CategoryList { get; set; }
+
+        /// <summary>
+        /// To store the tags to which this product included.
+        /// </summary>
         public ObservableCollection<Tags> TagsList { get; set; }
 
         public Products(string productId,
