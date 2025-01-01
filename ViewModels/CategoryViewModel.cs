@@ -91,7 +91,7 @@ namespace Product_Manager.ViewModels
         /// ------------------------------------
         /// 1. Search for the categoryid in the CategoriesToList by command parameter 'obj' and sets SelectedCategoryItem by category object.
         /// 2. Asking confirmation to delete the SelectedCategoryItem.
-        /// 3. Removes SelectedCategoryItem from Json Repository and CategoryToList.
+        /// 3. Removes SelectedCategoryItem from Json Repository and CategoriesToList.
         /// </summary>
         /// <param name="obj"></param>
         private void HandleDeleteCategoryCommand(object obj)

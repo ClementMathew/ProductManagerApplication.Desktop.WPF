@@ -138,7 +138,7 @@ namespace Product_Manager.ViewModels
             SelectedCategoryItems = new ObservableCollection<Categories>();
             SelectedTagItems = new ObservableCollection<Tags>();
 
-            ChooseImageCommand = new RelayCommand(HandleChooseImageCommand, CanHandleChooseImageCommand);
+            ChooseImageCommand = new RelayCommand(HandleChooseImageCommand);
             ProductsManagementSubmitCommand = new RelayCommand(HandleProductsManagementSubmitCommand, CanHandleProductsManagementSubmitCommand);
             HomeDeleteCommand = new RelayCommand(HandleHomeDeleteCommand);
         }
@@ -188,7 +188,11 @@ namespace Product_Manager.ViewModels
         /// ----------------------------------------------
         /// 1. Creates a new product.
         /// 2. Creates a new productid by Guid.
-        /// 3. 
+        /// 3. Converts BitmapImage from localdisk to Base64String by MemoryStream and PngBitmapEncoder.
+        /// 4. Creating frames by BitmapFrame and adds to object of PngBitmapEncoder.
+        /// 5. Then converts MemoryStream object to Base64String.
+        /// 6. Creating product object and adds to _productRepository and ProductsToList.
+        /// 7. Fields are made empty after successfull submission.
         /// </summary>
         /// <param name="obj"></param>
         private void HandleProductsManagementSubmitCommand(object obj)
@@ -215,6 +219,11 @@ namespace Product_Manager.ViewModels
             MessageBox.Show("Product successfully added.");
         }
 
+        /// <summary>
+        /// ClearFields Function
+        /// --------------------
+        /// 1. Makes all properties empty.
+        /// </summary>
         private void ClearFields()
         {
             Name = string.Empty;
@@ -226,11 +235,16 @@ namespace Product_Manager.ViewModels
             SelectedTagItems.Clear();
         }
 
-        private bool CanHandleChooseImageCommand(object arg)
-        {
-            return true;
-        }
-
+        /// <summary>
+        /// HandleChooseImageCommand Function
+        /// ---------------------------------
+        /// 1. Opens the explorer window to select the image file from local disk using OpenFileDialog.
+        /// 2. Applying filter using Filter property.
+        /// 3. If opened then the BitmapImage Uri of the image file is assigned.
+        /// 4. ImageName property is assigned with filename of the file selected.
+        /// 5. _imageSource field is updated with bitmap image object.
+        /// </summary>
+        /// <param name="obj"></param>
         private void HandleChooseImageCommand(object obj)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -258,8 +272,24 @@ namespace Product_Manager.ViewModels
             }
         }
 
+        /// <summary>
+        /// Property where we get errors.
+        /// </summary>
         public string Error { get; }
 
+        /// <summary>
+        /// ProductViewModel Indexer
+        /// -------------------------
+        /// 1. Handles the validation of all properties in this class by IDataErroInfo and Data Annotations.
+        /// 2. Creates the ValidationContext by the changed property as columnName.
+        /// 3. Takes the value of property by GetType, GetProperty and GetValue function from memory.
+        /// 4. Validates the context with TryValidateProperty method and stores the errors to _results list.
+        /// </summary>
+        /// <param name="columnName"></param>
+        /// <returns>
+        ///     1. returns null if Validation is true.
+        ///     2. returns first result in the _results list.
+        /// </returns>
         public string this[string columnName]
         {
             get

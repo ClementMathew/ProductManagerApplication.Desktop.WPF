@@ -70,6 +70,11 @@ namespace Product_Manager.ViewModels
 
         #endregion
 
+        /// <summary>
+        /// TagViewModel Constructor
+        /// ------------------------
+        /// 1. Initialize TagsToList by all tags from GetAll function of TagRepository.
+        /// </summary>
         public TagViewModel()
         {
             _tagRepository = new JsonTagRepository();
@@ -81,6 +86,14 @@ namespace Product_Manager.ViewModels
             DeleteTagCommand = new RelayCommand(HandleDeleteTagCommand);
         }
 
+        /// <summary>
+        /// HandleDeleteTagCommand Function
+        /// -------------------------------
+        /// 1. Search for the tagid in the TagsToList by command parameter 'obj' and sets SelectedTagItem by tag object.
+        /// 2. Asking confirmation to delete the SelectedTagItem.
+        /// 3. Removes SelectedTagItem from Json Repository and TagsToList.
+        /// </summary>
+        /// <param name="obj"></param>
         private void HandleDeleteTagCommand(object obj)
         {
             foreach (Tags tag in TagsToList)
@@ -99,21 +112,55 @@ namespace Product_Manager.ViewModels
             }
         }
 
+        /// <summary>
+        /// CanHandleTagIdGenerateCommand Function
+        /// --------------------------------------
+        /// 1. Checks whether TagId is set or not to generate tag id.
+        /// </summary>
+        /// <param name="arg"></param>
+        /// <returns>
+        ///     1. returns true if TagId is null or empty.
+        ///     2. returns false if TagId is set.
+        /// </returns>
         private bool CanHandleTagIdGenerateCommand(object arg)
         {
             return TagId == null || TagId == string.Empty;
         }
 
+        /// <summary>
+        /// HandleTagIdGenerateCommand Function
+        /// -----------------------------------
+        /// 1. Generate new id by Guid, and sets to TagId.
+        /// </summary>
+        /// <param name="obj"></param>
         private void HandleTagIdGenerateCommand(object obj)
         {
             TagId = Guid.NewGuid().ToString();
         }
 
+        /// <summary>
+        /// CanHandleTagManagementSubmitCommand Function
+        /// --------------------------------------------
+        /// 1. Checks whether _results list of ValidationResults has any errors.
+        /// </summary>
+        /// <param name="arg"></param>
+        /// <returns>
+        ///     1. returns false if there any error present in the _results list.
+        ///     2. returns true if the _results list is empty.
+        /// </returns>
         private bool CanHandleTagManagementSubmitCommand(object arg)
         {
             return !_results.Any();
         }
 
+        /// <summary>
+        /// HandleTagManagementSubmitCommand Function
+        /// -----------------------------------------
+        /// 1. Creates a new tag.
+        /// 2. Adds the tag to the Json repository and TagsToList.
+        /// 3. ClearFields function is called to clear all textbox values.
+        /// </summary>
+        /// <param name="obj"></param>
         private void HandleTagManagementSubmitCommand(object obj)
         {
             Tags tag = new Tags(TagId, Name);
@@ -126,14 +173,35 @@ namespace Product_Manager.ViewModels
             MessageBox.Show("Tag added successfully.");
         }
 
+        /// <summary>
+        /// ClearFields Function
+        /// --------------------
+        /// 1. Makes all properties empty.
+        /// </summary>
         private void ClearFields()
         {
             Name = string.Empty;
             TagId = string.Empty;
         }
 
+        /// <summary>
+        /// Property where we get errors.
+        /// </summary>
         public string Error { get; }
 
+        /// <summary>
+        /// TagViewModel Indexer
+        /// --------------------
+        /// 1. Handles the validation of all properties in this class by IDataErroInfo and Data Annotations.
+        /// 2. Creates the ValidationContext by the changed property as columnName.
+        /// 3. Takes the value of property by GetType, GetProperty and GetValue function from memory.
+        /// 4. Validates the context with TryValidateProperty method and stores the errors to _results list.
+        /// </summary>
+        /// <param name="columnName"></param>
+        /// <returns>
+        ///     1. returns null if Validation is true.
+        ///     2. returns first result in the _results list.
+        /// </returns>
         public string this[string columnName]
         {
             get

@@ -7,6 +7,5 @@ namespace Product_Manager
     /// </summary>
     public partial class App : Application
     {
-
     }
 }

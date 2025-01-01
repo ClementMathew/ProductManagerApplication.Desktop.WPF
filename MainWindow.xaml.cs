@@ -22,7 +22,8 @@ namespace Product_Manager
         /// HomeStartup Function
         /// --------------------
         /// 1. Sets button background white for selected.
-        /// 2. 
+        /// 2. Creating the productViewModel object and setting the datacontext of Home and Products page to this model.
+        /// 3. Setting the mainwindow frame homepage frames.
         /// </summary>
         private void HomeStartup()
         {
@@ -42,8 +43,8 @@ namespace Product_Manager
         /// <summary>
         /// Button_Click Event
         /// ------------------
-        /// 1. ClearButtonSelection() Function called to clear all selection in navigation buttons.
-        /// 2. 
+        /// 1. ClearButtonSelection function called to clear all selection in navigation buttons.
+        /// 2. Calling HomeStartUp function to set the homepage when Home is called.
         /// 3. Sets button backgrounds and main frame sources according to the selected button content using switch case.
         /// </summary>
         /// <param name="sender"></param>
@@ -58,17 +59,7 @@ namespace Product_Manager
             switch (buttonContent)
             {
                 case "Home":
-                    HomeButton.Background = Brushes.White;
-
-                    ProductViewModel productViewModel = new ProductViewModel();
-
-                    Home home = new Home();
-                    home.DataContext = productViewModel;
-                    MainWindowFrame.Content = home;
-
-                    Pages.Home_Pages.Products products = new Pages.Home_Pages.Products();
-                    products.DataContext = productViewModel;
-                    home.ProductsFrame.Content = products;
+                    HomeStartup();
 
                     break;
                 case "Products Management":
