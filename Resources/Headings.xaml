@@ -32,6 +32,7 @@
             <Setter Property="Foreground" Value="Green"/>
             <Setter Property="FontSize" Value="{StaticResource FontMedium}"/>
             <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="0,0,20,0"/>
         </Style.Setters>
     </Style>
     
