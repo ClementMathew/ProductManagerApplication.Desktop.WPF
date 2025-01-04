@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Product_Manager"
         xmlns:vm="clr-namespace:Product_Manager.ViewModels"
-        mc:Ignorable="d"  
+        mc:Ignorable="d" WindowState="Maximized" ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         Title="Product Manager" d:Height="900" d:Width="1600" Icon="Assets (Solution)\Icons\logo.ico">
 
