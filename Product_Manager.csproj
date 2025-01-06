@@ -39,6 +39,7 @@
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -58,7 +59,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Attached Properties\ListViewSelectedItems.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Converters\EmptyImageConverter.cs" />
+    <Compile Include="Converters\PriceConverter.cs" />
     <Compile Include="Models\Categories.cs" />
     <Compile Include="Models\Tags.cs" />
     <Compile Include="Pages\CategoriesManagement.xaml.cs">
@@ -82,17 +86,15 @@
     <Compile Include="Pages\TagsManagement.xaml.cs">
       <DependentUpon>TagsManagement.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Repositories\InMemoryCategoryRepository.cs" />
-    <Compile Include="Repositories\InMemoryProductRepository.cs" />
-    <Compile Include="Repositories\InMemoryTagRepository.cs" />
+    <Compile Include="Repositories\JsonCategoryRepository.cs" />
+    <Compile Include="Repositories\JsonProductRepository.cs" />
+    <Compile Include="Repositories\JsonTagRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="Validators\PriceValidationAttribute.cs" />
     <Compile Include="ViewModels\CategoryViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
     <Compile Include="ViewModels\TagViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
-    <Compile Include="Windows\NewCategoryWindow.xaml.cs">
-      <DependentUpon>NewCategoryWindow.xaml</DependentUpon>
-    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -145,11 +147,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\ListViews.xaml">
+    <Page Include="Resources\Labels.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Sizes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\TextBoxes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -162,14 +168,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Templates\TabTemplate.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Templates\TextBoxTemplate.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\NewCategoryWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -203,12 +201,17 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Resource Include="Assets %28Solution%29\ICO Type\logo.ico" />
+    <Resource Include="Assets %28Solution%29\Images\Product.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets %28Solution%29\PNG Type\logo.png" />
+    <Resource Include="Assets %28Solution%29\Icons\logo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets %28Solution%29\Icons\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets %28Solution%29\Icons\Delete.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -4,33 +4,42 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Product_Manager.Pages"
+      xmlns:vm="clr-namespace:Product_Manager.ViewModels"
       mc:Ignorable="d" 
-      d:DesignHeight="700" d:DesignWidth="800"
+      d:DesignHeight="700" d:DesignWidth="1400"
       Title="Home" d:Background="White">
 
     <StackPanel Margin="30">
-        <!--Home Header-->
-        <TextBlock Text="Dashboard" Style="{StaticResource MainHeading}"/>
         
+        <!--Home Header-->
+        <DockPanel >
+            <TextBlock DockPanel.Dock="Left" Text="Dashboard" Style="{StaticResource MainHeading}"/>
+
+            <!--Header Delete Button-->
+            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Style="{StaticResource DeleteButton}"
+                        Command="{Binding HomeDeleteCommand}"
+                        Content="Delete Product"></Button>
+            </StackPanel>
+        </DockPanel>
+
         <!--Home Tab Control-->
-        <TabControl Margin="20,0,0,0" Height="530">
-            
+        <TabControl Margin="20,0,0,0" Height="550">
+
             <!--Products Tab-->
-            <TabItem Header="Products" Height="21" Margin="-2,0,-2,0" VerticalAlignment="Bottom">
-                <Frame Source="Home Pages/Products.xaml"/>
+            <TabItem Header="Products">
+                <Frame x:Name="ProductsFrame"/>
             </TabItem>
-            
+
             <!--Categories Tab-->
             <TabItem Header="Categories">
                 <Frame Source="Home Pages/Categories.xaml"/>
             </TabItem>
-            
+
             <!--Tags Tab-->
             <TabItem Header="Tags">
                 <Frame Source="Home Pages/Tags.xaml"/>
             </TabItem>
         </TabControl>
-
-        
     </StackPanel>
 </Page>

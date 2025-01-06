@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    
+
     <!--Resources-->
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../Resources/Sizes.xaml"/>
@@ -20,7 +20,7 @@
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="2">
+                                CornerRadius="5">
                             <ContentPresenter VerticalAlignment="Center" 
                                               HorizontalAlignment="Center"/>
                         </Border>
@@ -29,13 +29,25 @@
             </Setter>
         </Style.Setters>
     </Style>
-    
+
+    <!--Custom Delete Button Template-->
+    <ControlTemplate x:Key="DeleteImageButtonTemplate" TargetType="Button">
+        <Image Source="pack://application:,,,/Assets (Solution)/Icons/Delete.png"
+               Name="DeleteImage"/>
+
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="DeleteImage" Property="Cursor" Value="Hand"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
     <!--Custom Left Tab Buttons Template-->
     <Style x:Key="CustomLeftTabButton" TargetType="Button">
         <Style.Setters>
             <Setter Property="Foreground" Value="{StaticResource TextColorBrush}"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="FontSize" Value="{StaticResource FontNormal}"/>
+            <Setter Property="FontSize" Value="{StaticResource FontMedium}"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -53,4 +65,5 @@
             </Setter>
         </Style.Setters>
     </Style>
+
 </ResourceDictionary>

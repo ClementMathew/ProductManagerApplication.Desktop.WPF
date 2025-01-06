@@ -9,4 +9,31 @@
             <Setter Property="Margin" Value="20,10,0,30"/>
         </Style.Setters>
     </Style>
+
+    <!--Product List Headings-->
+    <Style TargetType="TextBlock" x:Key="ProductListHeading">
+        <Style.Setters>
+            <Setter Property="FontSize" Value="{StaticResource FontMedium}"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style.Setters>
+    </Style>
+
+    <!--Product List Sub Headings-->
+    <Style TargetType="TextBlock" x:Key="ProductListSubHeading">
+        <Style.Setters>
+            <Setter Property="FontSize" Value="{StaticResource FontSmall}"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+        </Style.Setters>
+    </Style>
+    
+    <!--Product List Price-->
+    <Style TargetType="TextBlock" x:Key="ProductListPrice">
+        <Style.Setters>
+            <Setter Property="Foreground" Value="Green"/>
+            <Setter Property="FontSize" Value="{StaticResource FontMedium}"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="0,0,20,0"/>
+        </Style.Setters>
+    </Style>
+    
 </ResourceDictionary>

@@ -5,11 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Product_Manager"
         xmlns:vm="clr-namespace:Product_Manager.ViewModels"
-        mc:Ignorable="d"
+        mc:Ignorable="d" WindowState="Maximized" ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
-        Title="Product Manager" Height="900" Width="1600" Icon="Assets (Solution)\ICO Type\logo.ico">
+        Title="Product Manager" d:Height="900" d:Width="1600" Icon="Assets (Solution)\Icons\logo.ico">
 
+    <!--Window Resources-->
     <Window.Resources>
+        
         <!--Seperator Style-->
         <Style x:Key="CustomSeperator" TargetType="Separator">
             <Style.Setters>
@@ -18,10 +20,10 @@
         </Style>
     </Window.Resources>
 
-    <!--Outer Grid-->
+    <!--Outer Row Grid-->
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
+            <RowDefinition MinHeight="150" Height="1*"/>
             <RowDefinition Height="4*"/>
         </Grid.RowDefinitions>
 
@@ -31,7 +33,7 @@
               VerticalAlignment="Stretch">
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition MinWidth="150" Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="9*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
@@ -40,10 +42,12 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Stretch"
                     Width="180" 
+                    Height="108"
                     Grid.Column="0"
                     CornerRadius="50" 
-                    Margin="-50,35,0,35">
-                <Image Source="Assets (Solution)\PNG Type\logo.png" Height="80" HorizontalAlignment="Right" Margin="15,0"/>
+                    Margin="-50,0,0,0">
+
+                <Image Source="Assets (Solution)\Icons\logo.png" Height="80" HorizontalAlignment="Right" Margin="15,0"/>
             </Border>
 
             <!--Header Title Section-->
@@ -54,13 +58,17 @@
                 </Grid.RowDefinitions>
 
                 <StackPanel Grid.Row="1">
+                    
+                    <!--Main Header-->
                     <TextBlock Text="Product Manager" 
                            FontWeight="Bold"
                            FontSize="{StaticResource Font2XL}" 
                            Foreground="{StaticResource SecondaryColorBrush}"/>
+                    
+                    <!--Sub Header-->
                     <TextBlock Text="You give us the products... we will manage the rest of it...!"  
                            Foreground="{StaticResource SecondaryColorBrush}"
-                           FontSize="{StaticResource FontMedium}"/>
+                           FontSize="{StaticResource FontMediumNormal}"/>
                 </StackPanel>
             </Grid>
         </Grid>
@@ -68,7 +76,7 @@
         <!--Bottom Section-->
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition MinWidth="300" Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="4*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 

@@ -9,20 +9,41 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Tags">
 
+    <!--Page DataContext-->
     <Page.DataContext>
         <vm:TagViewModel/>
     </Page.DataContext>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="5*"></RowDefinition>
-            <RowDefinition Height="1*"></RowDefinition>
-        </Grid.RowDefinitions>
+    <!--Tags ListView-->
+    <ListView Grid.Row="0" 
+              BorderBrush="Transparent"
+              BorderThickness="0"
+              SelectedItem="{Binding SelectedTagItem}"
+              ItemsSource="{Binding TagsToList}"
+              ItemContainerStyle="{StaticResource MainListViewItemTemplate_Categories_Tags}">
 
-        <ListView Grid.Row="0" ItemsSource="{Binding TagsToList}" Style="{StaticResource ProductListView}"/>
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Style="{StaticResource PrimaryButton}" Content="New"></Button>
-            <Button Style="{StaticResource DeleteButton}" Content="Delete"></Button>
-        </StackPanel>
-    </Grid>
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="15*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!--Tag Name-->
+                        <TextBlock Margin="10,0,0,0"
+                                   VerticalAlignment="Center" 
+                                   Text="{Binding Name}"/>
+                        
+                        <!--Tag Delete Button-->
+                        <Button Grid.Column="1" 
+                                Style="{StaticResource DeleteImageButton}"
+                                CommandParameter="{Binding TagId}"
+                                Command="{Binding DataContext.DeleteTagCommand,RelativeSource={RelativeSource AncestorType=ListView}}"/>
+                    </Grid>
+                </StackPanel>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 </Page>

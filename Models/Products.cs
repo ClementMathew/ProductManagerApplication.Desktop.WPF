@@ -1,34 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 
 namespace Product_Manager.Models
 {
     public class Products
     {
-        public int ProductID { get; set; }
+        public string ProductID { get; set; }
         public string Name { get; set; }
         public int Price { get; set; }
         public string Description { get; set; }
-        public string ImageUrl { get; set; }
-        public List<Categories> CategoryList { get; set; }
-        public List<Tags> TagsList { get; set; }
+        public string ImageSourceBase64 { get; set; }
 
-        public Products(int productId, 
-            string name, 
-            int price, 
-            string description, 
-            string imageUrl, 
-            List<Categories> categories, 
-            List<Tags> tags)
+        /// <summary>
+        /// To store the categories to which this product included.
+        /// </summary>
+        public ObservableCollection<Categories> CategoryList { get; set; }
+
+        /// <summary>
+        /// To store the tags to which this product included.
+        /// </summary>
+        public ObservableCollection<Tags> TagsList { get; set; }
+
+        public Products(string productId,
+            string name,
+            int price,
+            string description,
+            string imageSourceBase64,
+            ObservableCollection<Categories> categories,
+            ObservableCollection<Tags> tags)
         {
             ProductID = productId;
             Name = name;
             Price = price;
             Description = description;
-            ImageUrl = imageUrl;
+            ImageSourceBase64 = imageSourceBase64;
             CategoryList = categories;
             TagsList = tags;
         }

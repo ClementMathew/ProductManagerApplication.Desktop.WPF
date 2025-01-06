@@ -5,25 +5,108 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Product_Manager.Pages.Home_Pages"
       xmlns:vm="clr-namespace:Product_Manager.ViewModels"
+      xmlns:pc="clr-namespace:Product_Manager.Converters"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="700" d:DesignWidth="1400"
       Title="Products" d:Background="White">
 
-    <Page.DataContext>
-        <vm:ProductViewModel/>
-    </Page.DataContext>
+    <!--Page Resources-->
+    <Page.Resources>
+        <pc:PriceConverter x:Key="PriceConverter"/>
+        <pc:EmptyImageConverter x:Key="EmptyImageConverter"/>
+    </Page.Resources>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="5*"></RowDefinition>
-            <RowDefinition Height="1*"></RowDefinition>
-        </Grid.RowDefinitions>
+    <!--Products Main ListView-->
+    <ListView Height="500"
+              BorderBrush="Transparent"
+              BorderThickness="0"
+              SelectedItem="{Binding SelectedProductItem,UpdateSourceTrigger=PropertyChanged}"
+              ItemsSource="{Binding ProductsToList}" 
+              ItemContainerStyle="{StaticResource MainListViewItemTemplate}">
 
-        <ListView Grid.Row="0" ItemsSource="{Binding ProductsToList}" Style="{StaticResource ProductListView}"/>
-        
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Style="{StaticResource PrimaryButton}" Content="New"></Button>
-            <Button Style="{StaticResource DeleteButton}" Content="Delete"></Button>
-        </StackPanel>
-    </Grid>
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <!--Product Image Brush Resource-->
+                    <Grid.Resources>
+                        <ImageBrush x:Key="ProductImageBrush" 
+                                    ImageSource="{Binding ImageSourceBase64,Converter={StaticResource EmptyImageConverter}}"/>
+                    </Grid.Resources>
+
+                    <!--Product Image, Name and Description-->
+                    <StackPanel Grid.Column="0" Orientation="Horizontal">
+                        <Border Background="{StaticResource ProductImageBrush}" 
+                                CornerRadius="5" 
+                                Height="60" Width="60" 
+                                Margin="20,15"/>
+
+                        <!--Product Name and Description-->
+                        <StackPanel VerticalAlignment="Center" Margin="10,0">
+                            <TextBlock Text="{Binding Name}" 
+                                       Margin="0,-5,0,3"
+                                       Style="{StaticResource ProductListHeading}"></TextBlock>
+                            <TextBlock Text="{Binding Description}"
+                                       Style="{StaticResource ProductListSubHeading}"></TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <!--Products Sub ListView-->
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                        
+                        <!--Products Sub ListView (Cateories)-->
+                        <ListView ItemsSource="{Binding CategoryList}"
+                                  Background="Transparent"
+                                  BorderBrush="Transparent"
+                                  BorderThickness="0"
+                                  ItemContainerStyle="{StaticResource SubListViewItemTemplate_Categories}">
+                            
+                            <ListView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ListView.ItemsPanel>
+
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"/>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                        <!--Products Sub ListView (Tags)-->
+                        <ListView ItemsSource="{Binding TagsList}"
+                                      Background="Transparent"
+                                      BorderBrush="Transparent"
+                                      BorderThickness="0"
+                                      ItemContainerStyle="{StaticResource SubListViewItemTemplate_Tags}">
+                            
+                            <ListView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ListView.ItemsPanel>
+
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"/>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackPanel>
+
+                    <!--Products Price-->
+                    <Border Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock Text="{Binding Price,Converter={StaticResource PriceConverter}}"
+                                   Style="{StaticResource ProductListPrice}"></TextBlock>
+                    </Border>
+                </Grid>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 </Page>
