@@ -1,7 +1,6 @@
 
 # Product Management Desktop Application
 
-## Overview
 This is a **Product Management Desktop Application** developed using **WPF** (.NET Framework/WPF 4.8). The application provides a comprehensive solution for managing products, categories, and tags. It offers a user-friendly interface to add, delete, and organize your products efficiently, including the ability to associate categories and tags with each product and upload product images.
 
 ---
