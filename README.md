@@ -1,0 +1,87 @@
+
+# Product Management Desktop Application
+
+## Overview
+This is a **Product Management Desktop Application** developed using **WPF** (.NET Framework/WPF 4.8). The application provides a comprehensive solution for managing products, categories, and tags. It offers a user-friendly interface to add, delete, and organize your products efficiently, including the ability to associate categories and tags with each product and upload product images.
+
+---
+
+## Features
+
+### **Product Management**
+- Add new products with essential details like name, description and price.
+- Associate products with one or more categories and tags.
+- Upload and manage product images.
+- Delete products that are no longer needed.
+
+### **Category Management**
+- Create new product categories for better organization.
+- Delete unused categories.
+
+### **Tag Management**
+- Add custom tags for better product classification.
+- Delete irrelevant tags.
+
+### **Advanced Functionalities**
+- Real-time association of categories and tags while adding a product.
+- Integrated image uploader for adding visuals to products.
+- Validation to ensure all necessary product details are added.
+
+---
+
+## Installation Instructions
+
+1. Clone the repository from GitHub.
+2. Open the solution in Visual Studio.
+3. Restore NuGet packages if required.
+4. Build the solution to ensure there are no errors.
+5. Run the application using the **Start** button in Visual Studio.
+
+---
+
+## Technologies Used
+- **Frontend**: Windows Presentation Foundation (WPF)
+- **Backend**: C# .NET Framework/WPF
+- **Data Storage**: Json Local Storage
+
+---
+
+## Screenshots
+
+---
+
+## How to Use
+
+### Add a Product
+1. Navigate to the "Product Management" page.
+2. Enter the product details.
+3. Select categories and tags for the product.
+4. Upload a product image.
+5. Click **Submit** to add the product.
+
+### Manage Categories
+1. Navigate to the "Categories Management" page.
+2. Add new categories by entering the category name and clicking **Submit**.
+
+### Manage Tags
+1. Navigate to the "Tags Management" page.
+2. Add new tags by entering the tag name and clicking **Submit**.
+
+---
+
+## Future Enhancements
+- Search and filter products by name, category, or tag.
+- Bulk upload products via CSV or Excel.
+- Cloud storage integration for product images.
+- Role-based access control.
+
+---
+
+## License
+This project is licensed under the MIT License. See the `LICENSE` file for details.
+
+---
+
+## Contact
+For any queries or suggestions, feel free to reach out to us at:
+- **Email**:clementmathew924@gmail.com
