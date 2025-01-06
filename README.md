@@ -47,6 +47,14 @@ This is a **Product Management Desktop Application** developed using **WPF** (.N
 
 ## Screenshots
 
+![Picture 1](https://github.com/user-attachments/assets/ca63de31-8c40-4139-b331-9aeb3c89f76f)
+![Picture 2](https://github.com/user-attachments/assets/0091558c-4a9d-4318-a2c8-bf91ed630166)
+![Picture 3](https://github.com/user-attachments/assets/c5b4e069-3fe7-486a-b6b2-dee38196933c)
+![Picture 4](https://github.com/user-attachments/assets/d99ba0a5-b7fa-4820-b569-80e49902153f)
+![Picture 5](https://github.com/user-attachments/assets/a9ab4dea-cefe-4c0e-813d-975e67b5d4f9)
+![Picture 6](https://github.com/user-attachments/assets/6de3b260-6dcc-43e9-812a-c2bf987dacea)
+![Picture 7](https://github.com/user-attachments/assets/9bcd5ada-b4c4-4460-a6a4-b898742d33bc)
+![Picture 8](https://github.com/user-attachments/assets/54fa741d-55e2-4aeb-b26c-4624edf63fc4)
 ---
 
 ## How to Use
